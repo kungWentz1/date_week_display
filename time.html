@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <title>日期和周数显示</title>
+  <style>
+    body {
+      width: 193px;
+      height: 85px;
+      margin: 0;
+      padding: 0;
+      font-family: Arial, sans-serif;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      border: 1px solid #ccc;
+      box-sizing: border-box;
+    }
+    .line {
+      width: 100%;
+      text-align: center;
+      font-size: 16px;
+    }
+  </style>
+</head>
+<body>
+  <div class="line" id="dateLine"></div>
+  <div class="line" id="weekLine"></div>
+
+  <script>
+    function updateDisplay() {
+      const now = new Date();
+      const year = now.getFullYear();
+      const month = String(now.getMonth() + 1).padStart(2, '0');
+      const day = String(now.getDate()).padStart(2, '0');
+
+      document.getElementById('dateLine').textContent = `${year}年${month}月${day}日`;
+
+      // 计算是第几周
+      const startOfYear = new Date(now.getFullYear(), 0, 1);
+      const pastDays = Math.floor((now - startOfYear) / (24 * 60 * 60 * 1000));
+      const weekNumber = Math.ceil((pastDays + startOfYear.getDay() + 1) / 7);
+
+      document.getElementById('weekLine').textContent = `今天是第 ${weekNumber} 周`;
+    }
+
+    updateDisplay();
+  </script>
+</body>
+</html>
