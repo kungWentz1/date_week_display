@@ -7,7 +7,7 @@
         html, body {
             margin: 0;
             padding: 0;
-            overflow: hidden; /* 禁止出现滚动条 */
+            overflow: hidden;
             width: 193px;
             height: 85px;
         }
@@ -16,42 +16,48 @@
             height: 100%;
             display: flex;
             flex-direction: column;
-            justify-content: center; /* 垂直居中 */
-            align-items: center;     /* 水平居中 */
+            justify-content: center;
+            align-items: center;
             font-family: Arial, sans-serif;
             font-size: 18px;
             font-weight: bold;
+            line-height: 1.4;
             box-sizing: border-box;
+            text-align: center;
         }
         .line {
-            margin: 2px 0;
+            margin: 0;
+            padding: 0;
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <div class="line" id="date"></div>
+        <div class="line" id="datetime"></div>
         <div class="line" id="week"></div>
     </div>
 
     <script>
-        function updateDateAndWeek() {
+        function updateDisplay() {
             const now = new Date();
+            const month = now.getMonth() + 1;
+            const day = now.getDate();
+            const hour = String(now.getHours()).padStart(2, '0');
+            const minute = String(now.getMinutes()).padStart(2, '0');
+            const second = String(now.getSeconds()).padStart(2, '0');
+
+            document.getElementById('datetime').textContent = `${month}月${day}日 ${hour}:${minute}:${second}`;
+
             const year = now.getFullYear();
-            const month = String(now.getMonth() + 1).padStart(2, '0');
-            const day = String(now.getDate()).padStart(2, '0');
-
-            document.getElementById('date').textContent = `${year}年${month}月${day}日`;
-
             const startOfYear = new Date(year, 0, 1);
             const dayOfYear = Math.floor((now - startOfYear) / (1000 * 60 * 60 * 24)) + 1;
-
             const weekNumber = Math.floor((dayOfYear - 5) / 7) + 1;
 
             document.getElementById('week').textContent = `第 ${weekNumber} 周`;
         }
 
-        updateDateAndWeek();
+        updateDisplay();
+        setInterval(updateDisplay, 1000);
     </script>
 </body>
 </html>
