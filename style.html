@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>品质实绩报告</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #f4f6f9;
+        }
+        .navbar {
+            display: flex;
+            align-items: center;
+            background-color: #3366cc;
+            color: white;
+            padding: 10px 20px;
+        }
+        .navbar h1 {
+            margin: 0;
+            font-size: 20px;
+        }
+        .navbar .right {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-left: auto;
+        }
+        .navbar button, .navbar .left-button {
+            background-color: #0066cc;
+            border: none;
+            color: white;
+            padding: 8px 12px;
+            font-size: 14px;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-left: 10px;
+        }
+        .navbar button:hover, .navbar .left-button:hover {
+            background-color: #005bb5;
+        }
+        .container {
+            padding: 20px;
+            max-width: 1200px;
+            margin: auto;
+        }
+        .card {
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+        .card h2 {
+            margin-top: 0;
+            color: #004c99;
+        }
+        .highlight {
+            font-weight: bold;
+            font-size: 18px;
+            color: #38a169;
+        }
+        .floating-button {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: #0066cc;
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            font-size: 24px;
+            cursor: pointer;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+        }
+        .floating-button:hover {
+            background-color: #005bb5;
+        }
+    </style>
+</head>
+<body>
+    <div class="navbar">
+        
+        <h1>品质实绩报告</h1>
+        <div class="right">
+            <div id="navTime">加载中...</div>
+            <button onclick="goHome()">首页</button>
+        </div>
+    </div>
+
+
+
+
+    <script>
+        function updateTime() {
+            const now = new Date();
+            const month = now.getMonth() + 1;
+            const day = now.getDate();
+            const hour = now.getHours().toString().padStart(2, '0');
+            const minute = now.getMinutes().toString().padStart(2, '0');
+            const second = now.getSeconds().toString().padStart(2, '0');
+            const dayOfYear = Math.floor((now - new Date(now.getFullYear(), 0, 0)) / 86400000);
+            const week = Math.floor((dayOfYear - 6) / 7) + 2;
+
+            const timeString = `${month}月${day}日 ${hour}:${minute}:${second} ｜ 第${week}周`;
+
+            document.getElementById('navTime').textContent = timeString;
+            document.getElementById('cardTime').textContent = `当前时间：${timeString}`;
+        }
+
+        function goHome() {
+            window.location.href = 'index.html'; // 修改成你的首页路径
+        }
+
+        setInterval(updateTime, 1000);
+        updateTime();
+    </script>
+</body>
+</html>
