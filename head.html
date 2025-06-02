@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>部长会报告首页</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-color: #f5f5f5;
+        }
+        .header {
+            background-color: #004080;
+            color: white;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+        }
+        .header h1 {
+            margin: 0;
+            font-size: 2em;
+        }
+        .header p {
+            margin: 5px 0 0;
+            font-size: 1em;
+        }
+        .buttons {
+            margin-top: 30px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: center;
+        }
+        .button {
+            background-color: #0073e6;
+            color: white;
+            padding: 15px 30px;
+            border: none;
+            border-radius: 8px;
+            font-size: 1em;
+            cursor: pointer;
+            text-decoration: none;
+            transition: background-color 0.3s;
+        }
+        .button:hover {
+            background-color: #005bb5;
+        }
+    </style>
+    <script>
+        function updateTime() {
+            const now = new Date();
+            const formatted = now.getFullYear() + '-' + 
+                String(now.getMonth() + 1).padStart(2, '0') + '-' + 
+                String(now.getDate()).padStart(2, '0') + ' ' +
+                String(now.getHours()).padStart(2, '0') + ':' +
+                String(now.getMinutes()).padStart(2, '0') + ':' +
+                String(now.getSeconds()).padStart(2, '0');
+            document.getElementById('datetime').textContent = formatted;
+        }
+
+        setInterval(updateTime, 1000);
+        window.onload = updateTime;
+    </script>
+</head>
+<body>
+    <div class="header">
+        <h1>部长会报告</h1>
+        <p id="datetime"></p>
+    </div>
+    <div class="buttons">
+        <a class="button" href="指摘回复.html">指摘回复</a>
+        <a class="button" href="上周回顾.html">上周回顾</a>
+        <a class="button" href="研发概况.html">研发概况</a>
+        <a class="button" href="生产概况.html">生产概况</a>
+        <a class="button" href="品质概况.html">品质概况</a>
+        <a class="button" href="三周会议出差计划.html">三周会议出差计划</a>
+    </div>
+</body>
+</html>
